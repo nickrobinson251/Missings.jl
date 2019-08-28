@@ -9,8 +9,8 @@ T(::Type{S}) where {S} = Core.Compiler.typesubtract(S, Missing)
 
 # vector constructors
 missings(dims::Dims) = fill(missing, dims)
-missings(::Type{T}, dims::Dims) where {T >: Missing} = fill!(Array{T}(undef, dims), missing)
-missings(::Type{T}, dims::Dims) where {T} = fill!(Array{Union{T, Missing}}(undef, dims), missing)
+missings(::Type{T}, dims::Dims) where {T >: Missing} = Array{T}(undef, dims)
+missings(::Type{T}, dims::Dims) where {T} = Array{Union{T, Missing}}(undef, dims)
 missings(dims::Integer...) = missings(dims)
 missings(::Type{T}, dims::Integer...) where {T} = missings(T, dims)
 
